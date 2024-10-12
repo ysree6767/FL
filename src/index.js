@@ -1,12 +1,16 @@
+// src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import AppRoutes from './routes';
-import './index.css';  // Import the global CSS file
+import App from './routes';
+import { AuthProvider } from './contexts/AuthContext';
+import './index.css';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <AppRoutes />
-  </BrowserRouter>,
+  <AuthProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AuthProvider>,
   document.getElementById('root')
 );

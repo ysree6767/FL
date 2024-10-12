@@ -1,11 +1,29 @@
 import React from 'react';
-import Dashboard from './views/dashboard';
 import { Route, Routes } from 'react-router-dom';
+import LoginPage from './views/Login';
+import SignUpPage from './views/SignUp';
+import ForgotPassword from './views/ForgotPassword';
+import Dashboard from './views/Dashboard';
+import NotFoundPage from './views/NotFoundPage';
+import PrivateRoute from './components/PrivateRoute';
 
-export default function AppRoutes() {
+function App() {
   return (
     <Routes>
-      <Route path="/Login" element={<Dashboard />} />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/sign-up' element={<SignUpPage />} />
+      <Route path='/forgot-password' element={<ForgotPassword />} />
+      <Route
+        path='/dashboard'
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
 }
+
+export default App;
