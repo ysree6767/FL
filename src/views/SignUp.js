@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
     confirmPassword: '',
     role: ''
@@ -28,9 +28,9 @@ const SignUp = () => {
     // Check if the user already exists in localStorage
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
-    if (storedUser && storedUser.email === formData.email) {
+    if (storedUser && storedUser.username === formData.username) {
       // If user already exists, display an error
-      setError('This email is already registered. Please use a different email.');
+      setError('This username is already registered. Please use a different username.');
       return;
     }
 
@@ -42,7 +42,7 @@ const SignUp = () => {
 
     // If validation passes, store the user data and session expiration time in localStorage
     const expirationTime = Date.now() + 10 * 60 * 1000; // 10 minutes from now
-    localStorage.setItem('user', JSON.stringify({ email: formData.email, expirationTime }));
+    localStorage.setItem('user', JSON.stringify({ username: formData.username, expirationTime }));
 
     // Clear error message if successful
     setError('');
@@ -73,18 +73,18 @@ const SignUp = () => {
   return (
     <div className='min-h-screen flex flex-col justify-center items-center bg-gray-100 px-4'>
       <div className='bg-white rounded-lg shadow-lg px-8 py-4 w-full max-w-sm sm:max-w-md lg:max-w-lg transition-all duration-300 ease-in-out'>
-        <div className='flex justify-center mb-4'>
-          <img src='https://via.placeholder.com/80' alt='logo' className='w-16 h-16 rounded-full' />
+        <div className='flex justify-center'>
+          <img src='/assets/capitol_light_logo.jpg' alt='logo' className='w-40 h-30' />
         </div>
-        <h2 className='text-3xl font-bold text-center text-gray-700 sm:text-4xl'>Create Account</h2>
-        <p className='text-gray-500 text-center mb-6'>Please enter your details to create an account</p>
+
+        <p className='text-gray-500 text-center mb-4'>Please enter your details to create an account</p>
 
         <form onSubmit={handleSubmit}>
           <div className='mb-4'>
-            <label htmlFor='email' className='block text-gray-600 text-sm font-medium mb-1'>
-              Email address
+            <label htmlFor='username' className='block text-gray-600 text-sm font-medium mb-1'>
+              Username
             </label>
-            <input type='email' id='email' name='email' className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500' placeholder='Enter your email' value={formData.email} onChange={handleInputChange} required />
+            <input type='username' id='username' name='username' className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500' placeholder='Enter your username' value={formData.username} onChange={handleInputChange} required />
           </div>
 
           <div className='mb-4'>
